@@ -1,0 +1,79 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar title="VIP Premium Test Drive" class="bg-white">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <!-- Header -->
+            <Label text="Choose Your VIP Premium Plan" class="text-2xl font-bold text-center mb-6" />
+
+            <!-- Plan Options -->
+            <StackLayout class="mb-8">
+                <!-- Basic Trial Option -->
+                <GridLayout class="bg-gray-100 rounded-xl p-4 mb-4" rows="auto, auto, auto, auto" columns="*, auto"
+                          tap="{{ selectPlan }}" data-plan="basic">
+                    <Label row="0" col="0" text="VIP Premium 30 Day Test Drive" class="text-lg font-bold" />
+                    <Label row="0" col="1" text="$0.00" class="text-lg font-bold text-red-600" />
+                    <Label row="1" colSpan="2" text="No Gift Box" class="text-gray-600" />
+                    <Label row="2" colSpan="2" text="30 day trial and $9.97 per month after" class="text-gray-600" />
+                    <Label row="3" colSpan="2" text="No Platinum Welcome Kit With Nothing To Pay Today" class="text-sm text-gray-500 mt-2" textWrap="true" />
+                    <Image row="0" col="1" src="{{ selectedPlan === 'basic' ? '~/images/radio-checked.png' : '~/images/radio-unchecked.png' }}" 
+                           class="w-6 h-6" />
+                </GridLayout>
+
+                <!-- Premium Trial Option -->
+                <GridLayout class="bg-gray-100 rounded-xl p-4 mb-4" rows="auto, auto, auto, auto" columns="*, auto"
+                          tap="{{ selectPlan }}" data-plan="premium">
+                    <Label row="0" col="0" text="VIP Premium 30 Day Test Drive" class="text-lg font-bold" />
+                    <Label row="0" col="1" text="$29.95" class="text-lg font-bold text-red-600" />
+                    <Label row="1" colSpan="2" text="FREE Gift Box" class="text-gray-600" />
+                    <Label row="2" colSpan="2" text="$29.95 setup fee with 30 day trial" class="text-gray-600" />
+                    <Label row="3" colSpan="2" text="Includes Welcome Kit, Premium Newsletter, Smart Watch & VIP T-shirt" 
+                           class="text-sm text-gray-500 mt-2" textWrap="true" />
+                    <Image row="0" col="1" src="{{ selectedPlan === 'premium' ? '~/images/radio-checked.png' : '~/images/radio-unchecked.png' }}" 
+                           class="w-6 h-6" />
+                </GridLayout>
+
+                <!-- Annual Option -->
+                <GridLayout class="bg-gray-100 rounded-xl p-4 mb-4" rows="auto, auto, auto, auto" columns="*, auto"
+                          tap="{{ selectPlan }}" data-plan="annual">
+                    <Label row="0" col="0" text="VIP Premium Annual Plan" class="text-lg font-bold" />
+                    <Label row="0" col="1" text="$99.70" class="text-lg font-bold text-red-600" />
+                    <Label row="1" colSpan="2" text="FREE Gift Box + ZERO Setup Fees" class="text-gray-600" />
+                    <Label row="2" colSpan="2" text="Save Two Months with Annual Payment" class="text-gray-600" />
+                    <Label row="3" colSpan="2" text="Includes ALL Premium Benefits + FREE Welcome Kit" 
+                           class="text-sm text-gray-500 mt-2" textWrap="true" />
+                    <Image row="0" col="1" src="{{ selectedPlan === 'annual' ? '~/images/radio-checked.png' : '~/images/radio-unchecked.png' }}" 
+                           class="w-6 h-6" />
+                </GridLayout>
+            </StackLayout>
+
+            <!-- Order Summary -->
+            <StackLayout class="border-t border-gray-200 pt-4 mb-4">
+                <Label text="Order Summary" class="text-xl font-bold mb-4" />
+                <GridLayout columns="*, auto" class="mb-2">
+                    <Label col="0" text="{{ selectedPlanName }}" class="text-gray-600" />
+                    <Label col="1" text="{{ selectedPlanPrice }}" class="font-bold" />
+                </GridLayout>
+            </StackLayout>
+
+            <!-- Terms Agreement -->
+            <GridLayout columns="auto, *" class="mb-4" tap="{{ toggleAgreement }}">
+                <Image col="0" src="{{ hasAgreed ? '~/images/checkbox-checked.png' : '~/images/checkbox-unchecked.png' }}" 
+                       class="w-6 h-6 mr-2" />
+                <Label col="1" text="I agree to the $9.97/month payment option and accept the Terms and Privacy Policy. Cancel anytime through the app or by emailing support@padelfanatics.app." 
+                       class="text-sm text-gray-600" textWrap="true" />
+            </GridLayout>
+
+            <!-- Order Button -->
+            <Button text="Yes! Get My VIP Access Now!" 
+                    tap="{{ onOrder }}" 
+                    isEnabled="{{ hasAgreed }}"
+                    class="{{ hasAgreed ? 'bg-red-600' : 'bg-gray-400' }} text-white rounded-xl p-4 mb-4" />
+
+            <!-- Security Notice -->
+            <Label text="* 100% Secure & Safe Payments *" class="text-center text-gray-600" />
+        </StackLayout>
+    </ScrollView>
+</Page>

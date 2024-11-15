@@ -1,0 +1,60 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar title="Profile" class="bg-white">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <!-- Profile Header -->
+            <StackLayout class="text-center mb-8">
+                <Label text="Profile" class="text-3xl font-bold mb-6" />
+                <Image src="~/images/profile-avatar.jpg" class="h-24 w-24 rounded-full mx-auto mb-4" stretch="aspectFill" />
+            </StackLayout>
+
+            <!-- Menu Items -->
+            <StackLayout class="border-t border-gray-200">
+                <!-- Profile -->
+                <GridLayout columns="auto, *, auto" class="p-4 border-b border-gray-200" tap="{{ onEditProfile }}">
+                    <Label col="0" text="👤" class="text-2xl mr-4" />
+                    <Label col="1" text="Profile" class="text-lg" />
+                    <Label col="2" text="›" class="text-xl text-gray-400" />
+                </GridLayout>
+
+                <!-- Terms and Conditions -->
+                <GridLayout columns="auto, *, auto" class="p-4 border-b border-gray-200" tap="{{ onTermsConditions }}">
+                    <Label col="0" text="❓" class="text-2xl mr-4" />
+                    <Label col="1" text="Terms And Conditions" class="text-lg" />
+                    <Label col="2" text="›" class="text-xl text-gray-400" />
+                </GridLayout>
+
+                <!-- Privacy Policy -->
+                <GridLayout columns="auto, *, auto" class="p-4 border-b border-gray-200" tap="{{ onPrivacyPolicy }}">
+                    <Label col="0" text="🛡️" class="text-2xl mr-4" />
+                    <Label col="1" text="Privacy Policy" class="text-lg" />
+                    <Label col="2" text="›" class="text-xl text-gray-400" />
+                </GridLayout>
+
+                <!-- About Us -->
+                <GridLayout columns="auto, *, auto" class="p-4 border-b border-gray-200" tap="{{ onAboutUs }}">
+                    <Label col="0" text="ℹ️" class="text-2xl mr-4" />
+                    <Label col="1" text="About Us" class="text-lg" />
+                    <Label col="2" text="›" class="text-xl text-gray-400" />
+                </GridLayout>
+
+                <!-- Logout -->
+                <GridLayout columns="auto, *, auto" class="p-4 border-b border-gray-200" tap="{{ onLogout }}">
+                    <Label col="0" text="↪️" class="text-2xl mr-4" />
+                    <Label col="1" text="Logout" class="text-lg" />
+                    <Label col="2" text="›" class="text-xl text-gray-400" />
+                </GridLayout>
+
+                <!-- Delete Account -->
+                <GridLayout columns="auto, *, auto" class="p-4 border-b border-gray-200" tap="{{ onDeleteAccount }}">
+                    <Label col="0" text="🗑️" class="text-2xl mr-4" />
+                    <Label col="1" text="Delete Account" class="text-lg text-red-600" />
+                    <Label col="2" text="›" class="text-xl text-gray-400" />
+                </GridLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

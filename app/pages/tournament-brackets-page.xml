@@ -1,0 +1,53 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar class="bg-white">
+        <NavigationButton text="←" />
+        <Label text="{{ tournamentName }}" />
+    </ActionBar>
+
+    <GridLayout rows="auto, *">
+        <!-- Tournament Info -->
+        <StackLayout row="0" class="p-4 border-b border-gray-200">
+            <Label text="{{ format }}" class="text-lg font-bold" />
+            <Label text="{{ progress }}" class="text-gray-600" />
+        </StackLayout>
+
+        <!-- Matches List -->
+        <ListView row="1" items="{{ matches }}" class="list-group">
+            <ListView.itemTemplate>
+                <GridLayout rows="auto, auto" class="p-4 border-b border-gray-200">
+                    <!-- Match Header -->
+                    <GridLayout row="0" columns="*, auto">
+                        <Label col="0" text="{{ roundName }}" class="font-bold" />
+                        <Label col="1" text="{{ status }}" 
+                               class="{{ status === 'Completed' ? 'text-green-600' : 'text-gray-400' }}" />
+                    </GridLayout>
+
+                    <!-- Match Details -->
+                    <GridLayout row="1" columns="*, auto, *" class="mt-2">
+                        <!-- Team/Player 1 -->
+                        <StackLayout col="0">
+                            <Label text="{{ team1Name }}" class="text-center" />
+                            <Label text="{{ team1Score }}" class="text-center font-bold"
+                                   visibility="{{ status === 'Completed' ? 'visible' : 'collapsed' }}" />
+                        </StackLayout>
+
+                        <!-- VS -->
+                        <Label col="1" text="vs" class="text-gray-400 mx-4" />
+
+                        <!-- Team/Player 2 -->
+                        <StackLayout col="2">
+                            <Label text="{{ team2Name }}" class="text-center" />
+                            <Label text="{{ team2Score }}" class="text-center font-bold"
+                                   visibility="{{ status === 'Completed' ? 'visible' : 'collapsed' }}" />
+                        </StackLayout>
+
+                        <Button text="{{ status === 'Completed' ? 'View Result' : 'Enter Score' }}"
+                                tap="{{ $parent.onMatchSelect }}"
+                                class="bg-red-600 text-white rounded-lg px-4 py-2"
+                                row="1" colSpan="3" />
+                    </GridLayout>
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </GridLayout>
+</Page>

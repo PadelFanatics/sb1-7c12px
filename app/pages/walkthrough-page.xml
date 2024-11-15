@@ -1,0 +1,68 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar class="bg-white">
+        <NavigationButton text="←" />
+        <Label text="How It Works" />
+    </ActionBar>
+
+    <GridLayout>
+        <!-- Main Content (Blurred Background) -->
+        <GridLayout class="bg-white" opacity="{{ backgroundOpacity }}">
+            <Image src="{{ currentSlide.backgroundImage }}" 
+                   stretch="aspectFill"
+                   class="blur-effect" />
+        </GridLayout>
+
+        <!-- Spotlight Area -->
+        <GridLayout rows="*, auto, *" columns="*, auto, *">
+            <!-- Top Overlay -->
+            <GridLayout row="0" colSpan="3" class="bg-black" opacity="{{ overlayOpacity }}" />
+            
+            <!-- Left Overlay -->
+            <GridLayout row="1" col="0" class="bg-black" opacity="{{ overlayOpacity }}" />
+            
+            <!-- Spotlight Content -->
+            <GridLayout row="1" col="1" class="spotlight-container">
+                <StackLayout class="p-4">
+                    <Label text="{{ currentSlide.icon }}" class="text-6xl text-center mb-4" />
+                    <Label text="{{ currentSlide.title }}" class="text-2xl font-bold text-center mb-2" />
+                    <Label text="{{ currentSlide.description }}" 
+                           class="text-lg text-gray-600 text-center"
+                           textWrap="true" />
+                </StackLayout>
+            </GridLayout>
+            
+            <!-- Right Overlay -->
+            <GridLayout row="1" col="2" class="bg-black" opacity="{{ overlayOpacity }}" />
+            
+            <!-- Bottom Overlay -->
+            <GridLayout row="2" colSpan="3" class="bg-black" opacity="{{ overlayOpacity }}" />
+        </GridLayout>
+
+        <!-- Progress and Navigation -->
+        <GridLayout rows="*, auto, auto" class="p-4">
+            <!-- Progress Dots -->
+            <StackLayout row="1" orientation="horizontal" horizontalAlignment="center" class="mb-4">
+                <Repeater items="{{ slides }}">
+                    <Repeater.itemTemplate>
+                        <Label text="●" 
+                               class="{{ $index === $parent.currentIndex ? 'text-red-600' : 'text-white' }} 
+                                      text-2xl mx-1" />
+                    </Repeater.itemTemplate>
+                </Repeater>
+            </StackLayout>
+
+            <!-- Navigation Buttons -->
+            <GridLayout row="2" columns="auto, *, auto">
+                <Button col="0" 
+                        text="Skip" 
+                        tap="{{ onSkip }}"
+                        class="text-white" 
+                        visibility="{{ currentIndex === slides.length - 1 ? 'collapsed' : 'visible' }}" />
+                <Button col="2" 
+                        text="{{ currentIndex === slides.length - 1 ? 'Get Started' : 'Next' }}" 
+                        tap="{{ onNext }}"
+                        class="bg-red-600 text-white rounded-full px-8 py-4" />
+            </GridLayout>
+        </GridLayout>
+    </GridLayout>
+</Page>

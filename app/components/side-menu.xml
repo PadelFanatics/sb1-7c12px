@@ -1,0 +1,53 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="bg-white">
+    <StackLayout class="p-0">
+        <!-- Back Button -->
+        <GridLayout columns="auto, *" class="p-4 border-b border-gray-200">
+            <Label col="0" text="←" class="text-2xl" tap="{{ closeMenu }}" />
+        </GridLayout>
+
+        <!-- Menu Items -->
+        <ScrollView>
+            <StackLayout class="p-0">
+                <GridLayout columns="*, auto" class="p-4 border-b border-gray-200" tap="{{ onChangePassword }}">
+                    <Label col="0" text="Change Password" class="text-lg" />
+                    <Label col="1" text="›" class="text-xl text-gray-400" />
+                </GridLayout>
+
+                <GridLayout columns="*, auto" class="p-4 border-b border-gray-200" tap="{{ onSettings }}">
+                    <Label col="0" text="Settings" class="text-lg" />
+                    <Label col="1" text="›" class="text-xl text-gray-400" />
+                </GridLayout>
+
+                <GridLayout columns="*, auto" class="p-4 border-b border-gray-200" tap="{{ onVIPPremium }}">
+                    <Label col="0" text="VIP Premium" class="text-lg" />
+                    <Label col="1" text="›" class="text-xl text-gray-400" />
+                </GridLayout>
+
+                <GridLayout columns="*, auto" class="p-4 border-b border-gray-200" tap="{{ onShareApp }}">
+                    <Label col="0" text="Share App" class="text-lg" />
+                    <Label col="1" text="›" class="text-xl text-gray-400" />
+                </GridLayout>
+
+                <GridLayout columns="*, auto" class="p-4 border-b border-gray-200" tap="{{ onHelpDesk }}">
+                    <Label col="0" text="Help Desk" class="text-lg" />
+                    <Label col="1" text="›" class="text-xl text-gray-400" />
+                </GridLayout>
+
+                <GridLayout columns="*, auto" class="p-4 border-b border-gray-200" tap="{{ onShop }}">
+                    <Label col="0" text="Shop" class="text-lg" />
+                    <Label col="1" text="›" class="text-xl text-gray-400" />
+                </GridLayout>
+
+                <GridLayout columns="*, auto" class="p-4 border-b border-gray-200" tap="{{ onMatchInfo }}">
+                    <Label col="0" text="Match Info" class="text-lg" />
+                    <Label col="1" text="›" class="text-xl text-gray-400" />
+                </GridLayout>
+
+                <GridLayout columns="*, auto" class="p-4 border-b border-gray-200" tap="{{ onWalkthrough }}">
+                    <Label col="0" text="How the app works, a short walkthrough" class="text-lg" textWrap="true" />
+                    <Label col="1" text="›" class="text-xl text-gray-400" />
+                </GridLayout>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</Page>

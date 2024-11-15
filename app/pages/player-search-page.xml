@@ -1,0 +1,41 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar title="Select Player" class="bg-white">
+        <NavigationButton text="←" />
+    </ActionBar>
+
+    <GridLayout rows="auto, *">
+        <!-- Search Bar -->
+        <GridLayout row="0" columns="auto, *, auto" class="p-4 border-b border-gray-200">
+            <Label col="0" text="🔍" class="text-xl text-gray-400 mr-2" />
+            <TextField col="1" 
+                      hint="Search players by name or email"
+                      text="{{ searchQuery }}"
+                      textChange="{{ onSearchChange }}"
+                      class="text-gray-700" />
+            <Label col="2" 
+                   text="✕" 
+                   class="text-xl text-gray-400"
+                   visibility="{{ searchQuery ? 'visible' : 'collapsed' }}"
+                   tap="{{ clearSearch }}" />
+        </GridLayout>
+
+        <!-- Players List -->
+        <ListView row="1" items="{{ filteredPlayers }}" class="list-group">
+            <ListView.itemTemplate>
+                <GridLayout columns="auto, *, auto" class="p-4 border-b border-gray-200">
+                    <Image col="0" 
+                           src="{{ photoUrl }}" 
+                           class="rounded-full w-12 h-12 mr-4" />
+                    <StackLayout col="1">
+                        <Label text="{{ name }}" class="font-bold" />
+                        <Label text="{{ email }}" class="text-gray-500 text-sm" />
+                    </StackLayout>
+                    <Button col="2" 
+                            text="Select" 
+                            tap="{{ $parent.selectPlayer }}"
+                            class="bg-red-600 text-white rounded-full px-4 py-2" />
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </GridLayout>
+</Page>

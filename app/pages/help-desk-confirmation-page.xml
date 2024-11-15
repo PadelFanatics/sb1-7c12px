@@ -1,0 +1,30 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar class="bg-white">
+        <NavigationButton visibility="collapsed" />
+    </ActionBar>
+
+    <StackLayout class="p-8 text-center">
+        <!-- Success Icon -->
+        <Label text="✓" class="text-6xl text-green-500 mb-8" />
+        
+        <!-- Thank You Message -->
+        <Label text="Thank You {{ name }}!" class="text-2xl font-bold mb-4" textWrap="true" />
+        <Label text="Your message has been received" class="text-lg text-gray-600 mb-2" textWrap="true" />
+        <Label text="We'll get back to you within 24 hours" class="text-gray-600 mb-8" textWrap="true" />
+        
+        <!-- Support Info -->
+        <StackLayout class="bg-gray-100 rounded-xl p-6 mb-8">
+            <Label text="Support Hours" class="font-bold mb-2" />
+            <Label text="Monday - Friday" class="text-gray-600" />
+            <Label text="9:00 AM - 5:00 PM GMT" class="text-gray-600 mb-4" />
+            
+            <Label text="Emergency Support" class="font-bold mb-2" />
+            <Label text="support@padelfanatics.app" class="text-red-600" />
+        </StackLayout>
+
+        <!-- Return Button -->
+        <Button text="Return to Home" 
+                tap="{{ onReturn }}" 
+                class="bg-red-600 text-white rounded-full p-4" />
+    </StackLayout>
+</Page>

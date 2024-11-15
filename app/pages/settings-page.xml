@@ -1,0 +1,59 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar title="Settings" class="bg-white">
+        <NavigationButton text="←" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <!-- Theme -->
+            <GridLayout columns="*, auto" class="p-4 border-b border-gray-200">
+                <Label col="0" text="Theme" class="text-lg" />
+                <DropDown col="1" 
+                         items="{{ themes }}"
+                         selectedIndex="{{ selectedThemeIndex }}"
+                         class="bg-gray-200 rounded-lg px-4 py-2 w-32 text-center" />
+            </GridLayout>
+
+            <!-- Sound -->
+            <GridLayout columns="*, auto" class="p-4 border-b border-gray-200">
+                <Label col="0" text="Sound" class="text-lg" />
+                <Switch col="1" 
+                        checked="{{ soundEnabled }}"
+                        class="text-red-600" />
+            </GridLayout>
+
+            <!-- Sets -->
+            <GridLayout columns="*, auto" class="p-4 border-b border-gray-200">
+                <Label col="0" text="Sets" class="text-lg" />
+                <DropDown col="1" 
+                         items="{{ setOptions }}"
+                         selectedIndex="{{ selectedSetsIndex }}"
+                         class="bg-gray-200 rounded-lg px-4 py-2 w-32 text-center" />
+            </GridLayout>
+
+            <!-- Games -->
+            <GridLayout columns="*, auto" class="p-4 border-b border-gray-200">
+                <Label col="0" text="Games" class="text-lg" />
+                <DropDown col="1" 
+                         items="{{ gameOptions }}"
+                         selectedIndex="{{ selectedGamesIndex }}"
+                         class="bg-gray-200 rounded-lg px-4 py-2 w-32 text-center" />
+            </GridLayout>
+
+            <!-- Advantage -->
+            <GridLayout columns="*, auto" class="p-4 border-b border-gray-200">
+                <Label col="0" text="Advantage" class="text-lg" />
+                <DropDown col="1" 
+                         items="{{ advantageOptions }}"
+                         selectedIndex="{{ selectedAdvantageIndex }}"
+                         class="bg-gray-200 rounded-lg px-4 py-2 w-32 text-center" />
+            </GridLayout>
+
+            <!-- Stream Your Game Live -->
+            <GridLayout columns="*, auto" class="p-4 border-b border-gray-200" tap="{{ onStreamLive }}">
+                <Label col="0" text="Stream Your Game Live" class="text-lg" />
+                <Label col="1" text="LIVE" class="bg-red-600 text-white px-4 py-1 rounded-lg" />
+            </GridLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

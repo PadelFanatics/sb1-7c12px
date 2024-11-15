@@ -1,0 +1,59 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar class="bg-white">
+        <NavigationButton visibility="collapsed" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <!-- Success Icon -->
+            <Label text="✓" class="text-6xl text-green-500 text-center mb-4" />
+            
+            <!-- Thank You Message -->
+            <Label text="Thank You!" class="text-3xl font-bold text-center mb-4" />
+            <Label text="Your VIP Premium Access is Now Active" class="text-xl text-center text-gray-700 mb-8" />
+
+            <!-- Order Details -->
+            <StackLayout class="bg-gray-100 rounded-xl p-4 mb-8">
+                <Label text="Order Details" class="text-lg font-bold mb-2" />
+                <Label text="{{ orderDetails }}" class="text-gray-600" textWrap="true" />
+                <Label text="{{ orderNumber }}" class="text-gray-600 mt-2" />
+            </StackLayout>
+
+            <!-- Next Steps -->
+            <Label text="What's Next?" class="text-xl font-bold mb-4" />
+            
+            <GridLayout rows="auto, auto, auto" columns="auto, *" class="mb-8">
+                <!-- Step 1 -->
+                <Label row="0" col="0" text="1" class="bg-red-600 text-white text-center rounded-full w-8 h-8 mr-4" />
+                <Label row="0" col="1" text="Download Your Smart Watch App" class="text-lg" textWrap="true" />
+                
+                <!-- Step 2 -->
+                <Label row="1" col="0" text="2" class="bg-red-600 text-white text-center rounded-full w-8 h-8 mr-4 mt-4" />
+                <Label row="1" col="1" text="Check Your Email for Welcome Instructions" class="text-lg mt-4" textWrap="true" />
+                
+                <!-- Step 3 -->
+                <Label row="2" col="0" text="3" class="bg-red-600 text-white text-center rounded-full w-8 h-8 mr-4 mt-4" />
+                <Label row="2" col="1" text="Start Exploring VIP Features" class="text-lg mt-4" textWrap="true" />
+            </GridLayout>
+
+            <!-- Gift Box Info (if applicable) -->
+            <StackLayout visibility="{{ hasGiftBox ? 'visible' : 'collapsed' }}" class="mb-8">
+                <Label text="Your Gift Box" class="text-xl font-bold mb-4" />
+                <Image src="~/images/gift-box.png" class="h-40 mb-4" stretch="aspectFit" />
+                <Label text="Your VIP Welcome Kit is being prepared and will be shipped within 24 hours." class="text-gray-600" textWrap="true" />
+            </StackLayout>
+
+            <!-- Support Info -->
+            <StackLayout class="border-t border-gray-200 pt-4">
+                <Label text="Need Help?" class="text-lg font-bold mb-2" />
+                <Label text="Contact our VIP support team:" class="text-gray-600" />
+                <Label text="support@padelfanatics.app" class="text-red-600" />
+            </StackLayout>
+
+            <!-- Continue Button -->
+            <Button text="Start Using VIP Features" 
+                    tap="{{ onContinue }}" 
+                    class="bg-red-600 text-white rounded-xl p-4 mt-8" />
+        </StackLayout>
+    </ScrollView>
+</Page>

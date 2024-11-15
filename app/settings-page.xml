@@ -1,0 +1,30 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-900">
+    <ActionBar title="Settings" class="bg-blue-600 text-white">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+    
+    <StackLayout class="p-4">
+        <Label text="Team Names" class="text-xl text-white mb-2" />
+        
+        <Label text="Team 1 Name" class="text-white" />
+        <TextField text="{{ settings.team1Name }}" 
+                  hint="Enter team 1 name"
+                  class="bg-gray-800 text-white p-4 rounded-lg mb-4" />
+        
+        <Label text="Team 2 Name" class="text-white" />
+        <TextField text="{{ settings.team2Name }}" 
+                  hint="Enter team 2 name"
+                  class="bg-gray-800 text-white p-4 rounded-lg mb-4" />
+        
+        <Label text="Voice Activation" class="text-xl text-white mt-4 mb-2" />
+        
+        <Label text="Activation Phrase" class="text-white" />
+        <TextField text="{{ settings.activationPhrase }}" 
+                  hint="Enter activation phrase"
+                  class="bg-gray-800 text-white p-4 rounded-lg mb-4" />
+        
+        <Button text="Save Settings" 
+                tap="{{ saveSettings }}"
+                class="bg-blue-600 text-white rounded-lg p-4 mt-4" />
+    </StackLayout>
+</Page>

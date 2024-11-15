@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-black">
+    <GridLayout rows="auto, *, auto" class="p-4">
+        <!-- Team Names -->
+        <GridLayout row="0" columns="*, *" class="mb-4">
+            <Label col="0" text="TEAM - A" class="text-white text-center p-2 bg-gray-800 rounded-full text-xs" />
+            <Label col="1" text="TEAM - B" class="text-white text-center p-2 bg-gray-800 rounded-full text-xs" />
+        </GridLayout>
+
+        <!-- Main Scores -->
+        <GridLayout row="1" columns="*, *">
+            <!-- Team A Score Section -->
+            <StackLayout col="0" class="m-2">
+                <Label text="{{ team1Score }}" class="text-white text-center text-6xl mb-4" />
+                <GridLayout columns="auto, auto, auto" class="border-white border-2 rounded-lg">
+                    <Label col="0" text="{{ setHistory.team1[0] }}" class="text-red-600 p-4 text-2xl font-bold" />
+                    <Label col="1" text="{{ setHistory.team1[1] }}" class="text-white p-4 text-2xl" />
+                    <Label col="2" text="{{ setHistory.team1[2] }}" class="text-white p-4 text-2xl" />
+                </GridLayout>
+            </StackLayout>
+
+            <!-- Team B Score Section -->
+            <StackLayout col="1" class="m-2">
+                <Label text="{{ team2Score }}" class="text-white text-center text-6xl mb-4" />
+                <GridLayout columns="auto, auto, auto" class="border-white border-2 rounded-lg">
+                    <Label col="0" text="{{ setHistory.team2[0] }}" class="text-white p-4 text-2xl" />
+                    <Label col="1" text="{{ setHistory.team2[1] }}" class="text-red-600 p-4 text-2xl font-bold" />
+                    <Label col="2" text="{{ setHistory.team2[2] }}" class="text-white p-4 text-2xl" />
+                </GridLayout>
+            </StackLayout>
+        </GridLayout>
+
+        <!-- Score Controls -->
+        <GridLayout row="2" columns="*, *" class="mt-4">
+            <!-- Team A Controls -->
+            <GridLayout col="0" columns="*, *" class="bg-red-600 rounded-lg m-1">
+                <Button col="0" text="-" tap="{{ decrementTeam1Score }}" 
+                        class="text-white text-xl p-3" />
+                <Button col="1" text="+" tap="{{ incrementTeam1Score }}" 
+                        class="text-white text-xl p-3 bg-green-600 rounded-r-lg" />
+            </GridLayout>
+
+            <!-- Team B Controls -->
+            <GridLayout col="1" columns="*, *" class="bg-red-600 rounded-lg m-1">
+                <Button col="0" text="-" tap="{{ decrementTeam2Score }}" 
+                        class="text-white text-xl p-3" />
+                <Button col="1" text="+" tap="{{ incrementTeam2Score }}" 
+                        class="text-white text-xl p-3 bg-green-600 rounded-r-lg" />
+            </GridLayout>
+        </GridLayout>
+    </GridLayout>
+</Page>

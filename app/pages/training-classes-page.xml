@@ -1,0 +1,64 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar title="Training Classes" class="bg-white">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+
+    <GridLayout rows="auto, *">
+        <!-- Navigation Tabs -->
+        <GridLayout row="0" columns="*, *, *, *, *, *" class="border-b border-gray-200">
+            <Label col="0" text="Discussion" tap="{{ onTabSelect }}" data-tab="discussion" 
+                   class="{{ selectedTab === 'discussion' ? 'text-blue-600 border-b-2 border-blue-600' : '' }} p-4 text-center" />
+            <Label col="1" text="Learning" tap="{{ onTabSelect }}" data-tab="learning" 
+                   class="{{ selectedTab === 'learning' ? 'text-blue-600 border-b-2 border-blue-600' : '' }} p-4 text-center" />
+            <Label col="2" text="Members" tap="{{ onTabSelect }}" data-tab="members" 
+                   class="{{ selectedTab === 'members' ? 'text-blue-600 border-b-2 border-blue-600' : '' }} p-4 text-center" />
+            <Label col="3" text="Events" tap="{{ onTabSelect }}" data-tab="events" 
+                   class="{{ selectedTab === 'events' ? 'text-blue-600 border-b-2 border-blue-600' : '' }} p-4 text-center" />
+            <Label col="4" text="Leaderboard" tap="{{ onTabSelect }}" data-tab="leaderboard" 
+                   class="{{ selectedTab === 'leaderboard' ? 'text-blue-600 border-b-2 border-blue-600' : '' }} p-4 text-center" />
+            <Label col="5" text="About" tap="{{ onTabSelect }}" data-tab="about" 
+                   class="{{ selectedTab === 'about' ? 'text-blue-600 border-b-2 border-blue-600' : '' }} p-4 text-center" />
+        </GridLayout>
+
+        <!-- Content Area -->
+        <ScrollView row="1">
+            <StackLayout class="p-4">
+                <!-- VIP Access Button -->
+                <GridLayout class="bg-red-600 rounded-xl p-6 mb-6" tap="{{ onVIPAccess }}">
+                    <StackLayout>
+                        <Label text="👑 VIP Members Area" class="text-2xl text-white font-bold mb-2" />
+                        <Label text="Unlock premium courses and exclusive content" class="text-white" />
+                        <Button text="Access VIP Content" class="bg-white text-red-600 rounded-lg mt-4 p-4" />
+                    </StackLayout>
+                </GridLayout>
+
+                <!-- Free Courses -->
+                <GridLayout rows="auto, auto" columns="*, *" class="mb-4">
+                    <!-- Course Card 1 -->
+                    <GridLayout row="0" col="0" class="bg-white rounded-xl m-2 shadow-sm" rows="auto, auto, auto, auto" tap="{{ onCourseSelect }}" data-course="setup">
+                        <Image row="0" src="~/images/courses/game-setup.jpg" class="rounded-t-xl" stretch="aspectFill" height="120" />
+                        <Label row="1" text="Five Minute Padel Game Setup" class="font-bold p-2" textWrap="true" />
+                        <Label row="2" text="Experience effortless scoring with our Five Minute Padel Game Setup!" class="text-gray-600 p-2" textWrap="true" />
+                        <Label row="3" text="Free" class="text-red-600 font-bold p-2" />
+                    </GridLayout>
+
+                    <!-- Course Card 2 -->
+                    <GridLayout row="0" col="1" class="bg-white rounded-xl m-2 shadow-sm" rows="auto, auto, auto, auto" tap="{{ onCourseSelect }}" data-course="membership">
+                        <Image row="0" src="~/images/courses/membership.jpg" class="rounded-t-xl" stretch="aspectFill" height="120" />
+                        <Label row="1" text="Padel Fanatics Membership" class="font-bold p-2" textWrap="true" />
+                        <Label row="2" text="Learn how to efficiently score and track your Padel matches" class="text-gray-600 p-2" textWrap="true" />
+                        <Label row="3" text="Free" class="text-red-600 font-bold p-2" />
+                    </GridLayout>
+
+                    <!-- Course Card 3 -->
+                    <GridLayout row="1" col="0" class="bg-white rounded-xl m-2 shadow-sm" rows="auto, auto, auto, auto" tap="{{ onCourseSelect }}" data-course="basics">
+                        <Image row="0" src="~/images/courses/basics.jpg" class="rounded-t-xl" stretch="aspectFill" height="120" />
+                        <Label row="1" text="Padel Basics" class="font-bold p-2" textWrap="true" />
+                        <Label row="2" text="Master the fundamental techniques of Padel" class="text-gray-600 p-2" textWrap="true" />
+                        <Label row="3" text="Free" class="text-red-600 font-bold p-2" />
+                    </GridLayout>
+                </GridLayout>
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+</Page>

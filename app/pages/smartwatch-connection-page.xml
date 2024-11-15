@@ -1,0 +1,56 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar title="Connect Smartwatch" class="bg-white">
+        <NavigationButton text="←" />
+    </ActionBar>
+
+    <GridLayout rows="auto, *, auto">
+        <!-- Connection Status -->
+        <StackLayout row="0" class="p-4 border-b border-gray-200">
+            <GridLayout columns="auto, *" class="mb-2">
+                <Label col="0" text="Status: " class="font-bold" />
+                <Label col="1" text="{{ isConnected ? 'Connected' : 'Disconnected' }}" 
+                       class="{{ isConnected ? 'text-green-600' : 'text-red-600' }}" />
+            </GridLayout>
+            <Label text="{{ connectedDevice.name }}" 
+                   visibility="{{ isConnected ? 'visible' : 'collapsed' }}"
+                   class="text-gray-600" />
+        </StackLayout>
+
+        <!-- Device List -->
+        <GridLayout row="1" rows="auto, *">
+            <!-- Scanning Status -->
+            <StackLayout row="0" class="p-4" 
+                        visibility="{{ isScanning ? 'visible' : 'collapsed' }}">
+                <ActivityIndicator busy="true" />
+                <Label text="Scanning for smartwatches..." class="text-center text-gray-600" />
+            </StackLayout>
+
+            <!-- Discovered Devices -->
+            <ListView row="1" items="{{ discoveredDevices }}" class="list-group">
+                <ListView.itemTemplate>
+                    <GridLayout columns="auto, *, auto" class="p-4 border-b border-gray-200">
+                        <Label col="0" text="⌚" class="text-2xl mr-4" />
+                        <StackLayout col="1">
+                            <Label text="{{ name }}" class="font-bold" />
+                            <Label text="{{ UUID }}" class="text-gray-500 text-sm" />
+                        </StackLayout>
+                        <Button col="2" text="Connect" 
+                                tap="{{ $parent.onDeviceSelect }}"
+                                class="bg-blue-600 text-white rounded-lg px-4" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </GridLayout>
+
+        <!-- Action Buttons -->
+        <GridLayout row="2" columns="*, *" class="p-4">
+            <Button col="0" text="{{ isScanning ? 'Stop Scan' : 'Scan' }}" 
+                    tap="{{ toggleScan }}"
+                    class="{{ isScanning ? 'bg-red-600' : 'bg-blue-600' }} text-white rounded-lg m-1" />
+            <Button col="1" text="Disconnect" 
+                    tap="{{ disconnect }}"
+                    isEnabled="{{ isConnected }}"
+                    class="{{ isConnected ? 'bg-red-600' : 'bg-gray-400' }} text-white rounded-lg m-1" />
+        </GridLayout>
+    </GridLayout>
+</Page>

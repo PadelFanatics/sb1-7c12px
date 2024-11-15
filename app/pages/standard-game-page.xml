@@ -1,0 +1,77 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar>
+        <NavigationButton text="←" />
+    </ActionBar>
+
+    <StackLayout class="p-4">
+        <!-- Date Time Selection -->
+        <Label text="Select the day and time your game starts" class="text-lg text-gray-600 text-center mb-4" />
+        
+        <!-- Combined Date/Time Picker -->
+        <GridLayout class="bg-red-600 rounded-full mb-8" height="50">
+            <GridLayout columns="*, auto" class="px-8">
+                <Label col="0" text="{{ formattedDate }}" class="text-white text-lg" />
+                <Label col="1" text="{{ formattedTime }}" class="text-white text-lg" />
+            </GridLayout>
+            <Button text="" tap="{{ showDateTimePicker }}" class="opacity-0" />
+        </GridLayout>
+
+        <!-- Location Search -->
+        <GridLayout columns="auto, *, auto" class="bg-white rounded-full shadow-md p-4 mb-8">
+            <Label col="0" text="📍" class="text-red-600 text-xl mr-2" />
+            <TextField col="1" 
+                      hint="Search by LOCATION"
+                      text="{{ searchQuery }}"
+                      class="text-gray-700" />
+            <Label col="2" text="🔍" class="text-blue-400 text-xl" />
+        </GridLayout>
+
+        <!-- Waiting Room -->
+        <StackLayout class="bg-white rounded-3xl shadow-md p-6 mb-4">
+            <Label text="Waiting Room" class="text-xl font-bold mb-2" />
+            <Label text="Waiting for people to join the game...." class="text-gray-500 mb-4" />
+
+            <!-- Team A -->
+            <GridLayout columns="auto, *, auto" class="bg-gray-100 rounded-full p-2 mb-4">
+                <Label col="0" text="Team A" class="ml-4" />
+                <Label col="2" text="✏️" class="mr-4" tap="{{ editTeamName }}" data-team="A" />
+            </GridLayout>
+
+            <GridLayout columns="*, *" class="mb-6">
+                <!-- Host Player -->
+                <StackLayout col="0" class="text-center">
+                    <Image src="{{ currentUser.photoUrl }}" class="rounded-full h-20 w-20" />
+                    <Label text="{{ currentUser.name }}" class="mt-2" />
+                </StackLayout>
+                <!-- Empty Slot -->
+                <StackLayout col="1" class="text-center" tap="{{ selectPlayer }}" data-team="A" data-position="2">
+                    <Label text="👤" class="text-gray-300 text-4xl" />
+                    <Label text="....." class="mt-2" />
+                </StackLayout>
+            </GridLayout>
+
+            <!-- Team B -->
+            <GridLayout columns="auto, *, auto" class="bg-gray-100 rounded-full p-2 mb-4">
+                <Label col="0" text="Team B" class="ml-4" />
+                <Label col="2" text="✏️" class="mr-4" tap="{{ editTeamName }}" data-team="B" />
+            </GridLayout>
+
+            <GridLayout columns="*, *">
+                <!-- Empty Slots for Team B -->
+                <StackLayout col="0" class="text-center" tap="{{ selectPlayer }}" data-team="B" data-position="1">
+                    <Label text="👤" class="text-gray-300 text-4xl" />
+                    <Label text="....." class="mt-2" />
+                </StackLayout>
+                <StackLayout col="1" class="text-center" tap="{{ selectPlayer }}" data-team="B" data-position="2">
+                    <Label text="👤" class="text-gray-300 text-4xl" />
+                    <Label text="....." class="mt-2" />
+                </StackLayout>
+            </GridLayout>
+        </StackLayout>
+
+        <!-- Start Game Button -->
+        <Button text="Start Game" 
+                tap="{{ startGame }}" 
+                class="bg-red-600 text-white rounded-full p-4 text-lg" />
+    </StackLayout>
+</Page>

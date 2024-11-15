@@ -1,0 +1,55 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar class="bg-white">
+        <NavigationButton text="←" />
+        <Label text="Tournament Results" />
+    </ActionBar>
+
+    <GridLayout rows="auto, auto, *">
+        <!-- Tournament Info -->
+        <StackLayout row="0" class="p-4 border-b border-gray-200">
+            <Label text="{{ tournamentName }}" class="text-xl font-bold" />
+            <Label text="{{ format }}" class="text-gray-600" />
+        </StackLayout>
+
+        <!-- Winner Section -->
+        <GridLayout row="1" class="p-6 bg-red-50" rows="auto, auto">
+            <Label row="0" text="🏆 Tournament Winner" class="text-lg text-center mb-2" />
+            <StackLayout row="1" class="text-center">
+                <Image src="{{ winner.photoUrl }}" class="rounded-full h-20 w-20 mx-auto" />
+                <Label text="{{ winner.name }}" class="text-xl font-bold mt-2" />
+                <Label text="{{ winner.score }} points" class="text-red-600" />
+            </StackLayout>
+        </GridLayout>
+
+        <!-- Final Standings -->
+        <GridLayout row="2" rows="auto, *">
+            <Label text="Final Standings" class="text-lg font-bold p-4" />
+            
+            <ListView row="1" items="{{ standings }}" class="list-group">
+                <ListView.itemTemplate>
+                    <GridLayout columns="auto, auto, *, auto" class="p-4 border-b border-gray-200">
+                        <!-- Position -->
+                        <Label col="0" text="{{ position }}" 
+                               class="w-8 h-8 bg-gray-100 rounded-full text-center leading-8" />
+                        
+                        <!-- Player/Team Photo -->
+                        <Image col="1" src="{{ photoUrl }}" class="w-12 h-12 rounded-full mx-4" />
+                        
+                        <!-- Player/Team Info -->
+                        <StackLayout col="2">
+                            <Label text="{{ name }}" class="font-bold" />
+                            <GridLayout columns="auto, auto, auto" class="text-sm text-gray-600">
+                                <Label col="0" text="W: {{ wins }}" class="mr-2" />
+                                <Label col="1" text="L: {{ losses }}" class="mr-2" />
+                                <Label col="2" text="Sets: {{ setsWon }}-{{ setsLost }}" />
+                            </GridLayout>
+                        </StackLayout>
+                        
+                        <!-- Total Points -->
+                        <Label col="3" text="{{ score }}" class="text-lg font-bold" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </GridLayout>
+    </GridLayout>
+</Page>

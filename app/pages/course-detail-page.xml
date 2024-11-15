@@ -1,0 +1,53 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar class="bg-white">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+        <Label text="{{ course.title }}" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout>
+            <!-- Course Header -->
+            <Image src="{{ course.headerImage }}" stretch="aspectFill" height="200" />
+            
+            <StackLayout class="p-4">
+                <Label text="{{ course.title }}" class="text-2xl font-bold mb-2" />
+                <Label text="{{ course.description }}" class="text-gray-600 mb-4" textWrap="true" />
+                
+                <!-- Progress -->
+                <GridLayout columns="*, auto" class="mb-4">
+                    <Label col="0" text="Course Progress" class="font-bold" />
+                    <Label col="1" text="{{ progressText }}" class="text-gray-600" />
+                </GridLayout>
+                <Progress value="{{ progress }}" maxValue="100" class="mb-6" />
+
+                <!-- Instructor Info -->
+                <Label text="Instructor" class="text-xl font-bold mb-2" />
+                <GridLayout columns="auto, *" class="mb-6">
+                    <Image col="0" src="{{ course.instructor.avatar }}" class="w-16 h-16 rounded-full" />
+                    <StackLayout col="1" class="ml-4">
+                        <Label text="{{ course.instructor.name }}" class="font-bold" />
+                        <Label text="{{ course.instructor.title }}" class="text-gray-600" />
+                        <Label text="{{ course.instructor.bio }}" class="text-gray-600" textWrap="true" />
+                    </StackLayout>
+                </GridLayout>
+
+                <!-- Course Contents -->
+                <Label text="Course Contents" class="text-xl font-bold mb-4" />
+                <ListView items="{{ course.lessons }}" height="400">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="auto, *, auto" class="p-4 border-b border-gray-200">
+                            <Label col="0" text="{{ completed ? '✓' : '○' }}" 
+                                   class="{{ completed ? 'text-green-600' : 'text-gray-400' }} mr-4" />
+                            <Label col="1" text="{{ title }}" class="text-gray-800" />
+                            <Label col="2" text="▶" class="text-red-600" />
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+
+                <!-- Start/Continue Button -->
+                <Button text="{{ startButtonText }}" tap="{{ onStartCourse }}" 
+                        class="bg-red-600 text-white rounded-xl p-4 mt-4" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

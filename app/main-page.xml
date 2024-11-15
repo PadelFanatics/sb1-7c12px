@@ -1,0 +1,60 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="bg-white">
+    <!-- Existing content remains the same -->
+    
+    <!-- Floating Action Menu -->
+    <AbsoluteLayout>
+        <!-- Menu Items (initially hidden) -->
+        <StackLayout top="{{ menuOpen ? '0' : '100%' }}" left="0" width="100%" height="100%"
+                     class="bg-black" opacity="0.7"
+                     visibility="{{ menuOpen ? 'visible' : 'collapsed' }}"
+                     tap="{{ closeMenu }}">
+            
+            <!-- Menu Options -->
+            <GridLayout rows="auto, auto, auto, auto, auto" columns="*, auto" 
+                       horizontalAlignment="right" verticalAlignment="bottom"
+                       class="m-4 mb-24">
+                
+                <!-- Start Game -->
+                <Label row="0" col="0" text="START GAME" 
+                       class="text-white text-right p-4 text-lg" />
+                <Label row="0" col="1" text="▶" 
+                       class="bg-red-600 text-white text-2xl rounded-full w-16 h-16 text-center leading-16 m-2"
+                       tap="{{ onStartGame }}" />
+
+                <!-- Invite Friends -->
+                <Label row="1" col="0" text="INVITE FRIENDS" 
+                       class="text-white text-right p-4 text-lg" />
+                <Label row="1" col="1" text="👥" 
+                       class="bg-red-600 text-white text-2xl rounded-full w-16 h-16 text-center leading-16 m-2"
+                       tap="{{ onInviteFriends }}" />
+
+                <!-- Win Prizes -->
+                <Label row="2" col="0" text="WIN PRIZES" 
+                       class="text-white text-right p-4 text-lg" />
+                <Label row="2" col="1" text="🏆" 
+                       class="bg-red-600 text-white text-2xl rounded-full w-16 h-16 text-center leading-16 m-2"
+                       tap="{{ onWinPrizes }}" />
+
+                <!-- Help -->
+                <Label row="3" col="0" text="HELP" 
+                       class="text-white text-right p-4 text-lg" />
+                <Label row="3" col="1" text="❓" 
+                       class="bg-red-600 text-white text-2xl rounded-full w-16 h-16 text-center leading-16 m-2"
+                       tap="{{ onHelp }}" />
+
+                <!-- Close -->
+                <Label row="4" col="0" text="CLOSE" 
+                       class="text-white text-right p-4 text-lg" />
+                <Label row="4" col="1" text="✕" 
+                       class="bg-red-600 text-white text-2xl rounded-full w-16 h-16 text-center leading-16 m-2"
+                       tap="{{ closeMenu }}" />
+            </GridLayout>
+        </StackLayout>
+
+        <!-- Main FAB Button -->
+        <Label text="+" 
+               class="bg-red-600 text-white text-3xl rounded-full w-16 h-16 text-center leading-16"
+               tap="{{ toggleMenu }}"
+               top="{{ isAndroid ? '90%' : '85%' }}" left="80%" />
+    </AbsoluteLayout>
+</Page>

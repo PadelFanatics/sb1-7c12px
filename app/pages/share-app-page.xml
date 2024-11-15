@@ -1,0 +1,64 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar title="Share App" class="bg-white">
+        <NavigationButton text="←" />
+    </ActionBar>
+
+    <StackLayout class="p-4">
+        <!-- Header Text -->
+        <Label text="Share app with friends so they can become Padel Fanatics" 
+               class="text-2xl text-gray-600 text-center mb-8" textWrap="true" />
+
+        <!-- Android Link Section -->
+        <GridLayout rows="auto, auto" class="mb-8">
+            <Label row="0" class="mb-2">
+                <FormattedString>
+                    <Span text="🤖" class="text-2xl" />
+                    <Span text=" Android Link" class="text-xl ml-2" />
+                </FormattedString>
+            </Label>
+            <GridLayout row="1" columns="*, auto" class="border border-gray-200 rounded-full">
+                <Label col="0" text="https://www.Padelapplink.com" class="p-4 ml-4" />
+                <Button col="1" text="📋" tap="{{ copyAndroidLink }}" 
+                        class="bg-red-600 text-white rounded-full w-12 h-12" />
+            </GridLayout>
+        </GridLayout>
+
+        <!-- iOS Link Section -->
+        <GridLayout rows="auto, auto" class="mb-8">
+            <Label row="0" class="mb-2">
+                <FormattedString>
+                    <Span text="🍎" class="text-2xl" />
+                    <Span text=" iOS Link" class="text-xl ml-2" />
+                </FormattedString>
+            </Label>
+            <GridLayout row="1" columns="*, auto" class="border border-gray-200 rounded-full">
+                <Label col="0" text="https://www.Padelapplink.com" class="p-4 ml-4" />
+                <Button col="1" text="📋" tap="{{ copyIOSLink }}" 
+                        class="bg-red-600 text-white rounded-full w-12 h-12" />
+            </GridLayout>
+        </GridLayout>
+
+        <!-- Share Options -->
+        <Label text="Or share link via" class="text-xl text-gray-600 text-center mb-4" />
+        
+        <GridLayout columns="*, *, *" class="text-center">
+            <!-- Copy Link -->
+            <StackLayout col="0" tap="{{ copyLink }}" class="p-2">
+                <Label text="🔗" class="text-3xl bg-red-600 text-white rounded-full p-4" />
+                <Label text="Copy Link" class="text-sm mt-2" />
+            </StackLayout>
+
+            <!-- WhatsApp -->
+            <StackLayout col="1" tap="{{ shareViaWhatsApp }}" class="p-2">
+                <Label text="💬" class="text-3xl bg-red-600 text-white rounded-full p-4" />
+                <Label text="WhatsApp" class="text-sm mt-2" />
+            </StackLayout>
+
+            <!-- Email -->
+            <StackLayout col="2" tap="{{ shareViaEmail }}" class="p-2">
+                <Label text="✉️" class="text-3xl bg-red-600 text-white rounded-full p-4" />
+                <Label text="Email" class="text-sm mt-2" />
+            </StackLayout>
+        </GridLayout>
+    </StackLayout>
+</Page>

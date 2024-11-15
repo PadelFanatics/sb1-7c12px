@@ -1,0 +1,73 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar title="Challenges" class="bg-white">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+        <ActionItem ios.position="right" android.position="actionBar">
+            <Label text="🏆" class="text-2xl" tap="{{ showLeaderboard }}" />
+        </ActionItem>
+    </ActionBar>
+
+    <GridLayout rows="auto, *">
+        <!-- Categories -->
+        <ScrollView row="0" orientation="horizontal" class="border-b border-gray-200">
+            <StackLayout orientation="horizontal" class="p-2">
+                <Button text="All" 
+                        tap="{{ filterChallenges }}" 
+                        data-category="all"
+                        class="{{ selectedCategory === 'all' ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-700' }} rounded-full px-6 py-2 m-1" />
+                <Button text="Beginner" 
+                        tap="{{ filterChallenges }}" 
+                        data-category="beginner"
+                        class="{{ selectedCategory === 'beginner' ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-700' }} rounded-full px-6 py-2 m-1" />
+                <Button text="Intermediate" 
+                        tap="{{ filterChallenges }}" 
+                        data-category="intermediate"
+                        class="{{ selectedCategory === 'intermediate' ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-700' }} rounded-full px-6 py-2 m-1" />
+                <Button text="Advanced" 
+                        tap="{{ filterChallenges }}" 
+                        data-category="advanced"
+                        class="{{ selectedCategory === 'advanced' ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-700' }} rounded-full px-6 py-2 m-1" />
+            </StackLayout>
+        </ScrollView>
+
+        <!-- Challenges List -->
+        <ListView row="1" items="{{ filteredChallenges }}" class="p-2">
+            <ListView.itemTemplate>
+                <GridLayout rows="auto, auto, auto, auto" class="bg-white rounded-xl shadow-sm m-2 p-4">
+                    <!-- Challenge Title -->
+                    <GridLayout row="0" columns="*, auto" class="mb-2">
+                        <Label col="0" text="{{ title }}" class="text-xl font-bold" />
+                        <Label col="1" text="{{ difficulty }}" 
+                               class="{{ 'text-sm px-2 py-1 rounded-full ' + 
+                                       (difficulty === 'Beginner' ? 'bg-green-100 text-green-700' : 
+                                        difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-700' : 
+                                        'bg-red-100 text-red-700') }}" />
+                    </GridLayout>
+
+                    <!-- Video Player -->
+                    <WebView row="1" src="{{ videoUrl }}" height="200" class="rounded-lg mb-2" />
+
+                    <!-- Description -->
+                    <Label row="2" text="{{ description }}" textWrap="true" class="text-gray-600 mb-4" />
+
+                    <!-- Social Interactions -->
+                    <GridLayout row="3" columns="auto, auto, *, auto" class="border-t border-gray-200 pt-4">
+                        <!-- Like Button -->
+                        <GridLayout col="0" columns="auto, auto" tap="{{ $parent.onLike }}">
+                            <Label col="0" text="{{ isLiked ? '❤️' : '🤍' }}" class="mr-1" />
+                            <Label col="1" text="{{ likes }}" class="text-gray-600" />
+                        </GridLayout>
+
+                        <!-- Comment Button -->
+                        <GridLayout col="1" columns="auto, auto" tap="{{ $parent.onComment }}" class="ml-4">
+                            <Label col="0" text="💬" class="mr-1" />
+                            <Label col="1" text="{{ comments.length }}" class="text-gray-600" />
+                        </GridLayout>
+
+                        <!-- Share Button -->
+                        <Label col="3" text="📤" tap="{{ $parent.onShare }}" />
+                    </GridLayout>
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </GridLayout>
+</Page>

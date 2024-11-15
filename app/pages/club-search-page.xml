@@ -1,0 +1,64 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar title="Find Clubs" class="bg-white">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+
+    <GridLayout rows="auto, auto, *">
+        <!-- Search Bar -->
+        <GridLayout row="0" columns="*, auto" class="p-4 border-b border-gray-200">
+            <SearchBar col="0" 
+                      hint="Search location or club name" 
+                      text="{{ searchQuery }}" 
+                      submit="{{ onSearch }}"
+                      clear="{{ onClearSearch }}"
+                      class="bg-gray-100 rounded-lg" />
+            <Button col="1" 
+                    text="📍" 
+                    tap="{{ getCurrentLocation }}" 
+                    class="ml-2 bg-red-600 text-white rounded-lg w-12 h-12" />
+        </GridLayout>
+
+        <!-- Location Status -->
+        <StackLayout row="1" class="p-4" visibility="{{ isLocating ? 'visible' : 'collapsed' }}">
+            <Label text="Finding clubs near you..." class="text-gray-600" />
+            <ActivityIndicator busy="true" />
+        </StackLayout>
+
+        <!-- Club List -->
+        <ListView row="2" items="{{ clubs }}" class="p-2">
+            <ListView.itemTemplate>
+                <GridLayout columns="auto, *" rows="auto, auto, auto" class="bg-white rounded-lg p-4 m-1 shadow-sm">
+                    <!-- Club Image -->
+                    <Image col="0" rowSpan="3" 
+                           src="{{ photoUrl }}" 
+                           class="w-20 h-20 rounded-lg mr-4" 
+                           stretch="aspectFill" />
+                    
+                    <!-- Club Details -->
+                    <Label col="1" row="0" 
+                           text="{{ name }}" 
+                           class="text-lg font-bold" />
+                    
+                    <Label col="1" row="1" 
+                           text="{{ address }}" 
+                           class="text-gray-600" 
+                           textWrap="true" />
+                    
+                    <GridLayout col="1" row="2" columns="auto, auto, *" class="mt-2">
+                        <Label col="0" 
+                               text="{{ rating }}" 
+                               class="text-sm text-gray-600" />
+                        <Label col="1" 
+                               text="⭐" 
+                               class="ml-1" />
+                        <Label col="2" 
+                               text="{{ distance }}" 
+                               class="text-sm text-gray-600 text-right" />
+                    </GridLayout>
+
+                    <Button text="" tap="{{ $parent.onClubSelect }}" class="w-full h-full opacity-0" />
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </GridLayout>
+</Page>

@@ -1,0 +1,31 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-900">
+    <ActionBar title="Welcome to Padel Score" class="bg-blue-600 text-white" />
+    
+    <StackLayout class="p-4">
+        <Label text="Initial Setup" class="text-2xl text-white text-center mb-4" />
+        
+        <Label text="{{ currentPrompt }}" textWrap="true" 
+               class="text-xl text-white text-center mb-4" />
+        
+        <Label text="{{ instruction }}" textWrap="true"
+               class="text-white text-center mb-8" />
+        
+        <Button text="{{ isListening ? '🔴 Stop' : '🎤 Start' }}"
+                tap="{{ toggleListening }}"
+                class="{{ isListening ? 'bg-red-600' : 'bg-green-600' }} text-white rounded-lg p-4 mb-4" />
+        
+        <StackLayout class="mt-4">
+            <Label text="Setup Progress" class="text-white mb-2" />
+            <Progress value="{{ progress }}" maxValue="100" 
+                     class="bg-gray-700 h-2 rounded-full" />
+            <Label text="{{ progressText }}" class="text-sm text-gray-400 text-center mt-2" />
+        </StackLayout>
+        
+        <Button text="Skip Voice Setup"
+                tap="{{ skipCalibration }}"
+                class="bg-gray-600 text-white rounded-lg p-4 mt-8" />
+                
+        <Label text="You can always reconfigure voice settings later in the app settings"
+               textWrap="true" class="text-sm text-gray-400 text-center mt-4" />
+    </StackLayout>
+</Page>

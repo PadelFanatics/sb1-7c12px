@@ -1,0 +1,43 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar title="Help Center" class="bg-white">
+        <NavigationButton text="←" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <!-- Form Fields -->
+            <StackLayout class="mb-8">
+                <!-- Full Name -->
+                <TextField hint="Full Name" 
+                          text="{{ fullName }}"
+                          class="bg-white border border-gray-200 rounded-full p-4 mb-4"
+                          autocorrect="false"
+                          autocapitalizationType="words" />
+
+                <!-- Email -->
+                <TextField hint="Email Address" 
+                          text="{{ email }}"
+                          keyboardType="email"
+                          class="bg-white border border-gray-200 rounded-full p-4 mb-4"
+                          autocorrect="false"
+                          autocapitalizationType="none" />
+
+                <!-- Query -->
+                <Label text="Your Query" class="text-lg text-gray-600 mb-2 ml-4" />
+                <TextView hint="Type your message here..." 
+                         text="{{ query }}"
+                         class="bg-white border border-gray-200 rounded-3xl p-4 h-64 mb-4" />
+
+                <!-- Submit Button -->
+                <Button text="Submit" 
+                        tap="{{ onSubmit }}"
+                        class="bg-red-600 text-white rounded-full p-4" />
+            </StackLayout>
+
+            <!-- Loading Indicator -->
+            <ActivityIndicator busy="{{ isSubmitting }}" 
+                             visibility="{{ isSubmitting ? 'visible' : 'collapsed' }}"
+                             class="m-4" />
+        </StackLayout>
+    </ScrollView>
+</Page>

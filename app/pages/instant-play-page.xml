@@ -1,0 +1,96 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar class="bg-white">
+        <NavigationButton text="←" />
+        <Label text="Instant Play" />
+    </ActionBar>
+
+    <GridLayout rows="auto, *, auto">
+        <!-- Timer and Score Display -->
+        <GridLayout row="0" rows="auto, auto" class="p-4 border-b border-gray-200">
+            <!-- Timer -->
+            <Label row="0" text="{{ timeDisplay }}" class="text-3xl font-bold text-center mb-2" />
+            
+            <!-- Score -->
+            <GridLayout row="1" columns="*, auto, *">
+                <StackLayout col="0" class="text-center">
+                    <Label text="{{ team1Score }}" class="text-4xl font-bold" />
+                    <Label text="Team A" class="text-gray-600" />
+                </StackLayout>
+                <Label col="1" text="-" class="text-2xl text-gray-400 mx-4" />
+                <StackLayout col="2" class="text-center">
+                    <Label text="{{ team2Score }}" class="text-4xl font-bold" />
+                    <Label text="Team B" class="text-gray-600" />
+                </StackLayout>
+            </GridLayout>
+        </GridLayout>
+
+        <!-- Game Stats -->
+        <ScrollView row="1">
+            <StackLayout class="p-4">
+                <!-- Sets History -->
+                <Label text="Sets" class="text-lg font-bold mb-2" />
+                <GridLayout columns="*, auto, *" class="mb-4">
+                    <StackLayout col="0" class="text-center">
+                        <Label text="{{ team1Sets }}" class="text-2xl font-bold" />
+                        <Label text="Sets Won" class="text-sm text-gray-600" />
+                    </StackLayout>
+                    <StackLayout col="1" class="mx-4">
+                        <Label text="-" class="text-2xl text-gray-400" />
+                    </StackLayout>
+                    <StackLayout col="2" class="text-center">
+                        <Label text="{{ team2Sets }}" class="text-2xl font-bold" />
+                        <Label text="Sets Won" class="text-sm text-gray-600" />
+                    </StackLayout>
+                </GridLayout>
+
+                <!-- Current Set Details -->
+                <Label text="Current Set" class="text-lg font-bold mb-2" />
+                <GridLayout columns="*, auto, *" class="mb-4">
+                    <Label col="0" text="{{ team1Games }}" class="text-2xl font-bold text-center" />
+                    <Label col="1" text="-" class="text-2xl text-gray-400 mx-4" />
+                    <Label col="2" text="{{ team2Games }}" class="text-2xl font-bold text-center" />
+                </GridLayout>
+
+                <!-- Set History -->
+                <Label text="Set History" class="text-lg font-bold mb-2" />
+                <GridLayout columns="auto, auto, auto" class="mb-4">
+                    <Repeater items="{{ setHistory.team1 }}">
+                        <Repeater.itemTemplate>
+                            <Label text="{{ $value }}" class="bg-gray-100 rounded p-2 m-1 text-center w-12" />
+                        </Repeater.itemTemplate>
+                    </Repeater>
+                </GridLayout>
+                <GridLayout columns="auto, auto, auto" class="mb-4">
+                    <Repeater items="{{ setHistory.team2 }}">
+                        <Repeater.itemTemplate>
+                            <Label text="{{ $value }}" class="bg-gray-100 rounded p-2 m-1 text-center w-12" />
+                        </Repeater.itemTemplate>
+                    </Repeater>
+                </GridLayout>
+            </StackLayout>
+        </ScrollView>
+
+        <!-- Score Controls -->
+        <GridLayout row="2" rows="auto, auto" class="p-4 bg-gray-100">
+            <!-- Score Buttons -->
+            <GridLayout row="0" columns="*, *" class="mb-2">
+                <Button col="0" text="+1 Team A" 
+                        tap="{{ onTeam1Point }}" 
+                        class="bg-blue-600 text-white rounded-lg m-1" />
+                <Button col="1" text="+1 Team B" 
+                        tap="{{ onTeam2Point }}" 
+                        class="bg-blue-600 text-white rounded-lg m-1" />
+            </GridLayout>
+
+            <!-- Undo/Redo -->
+            <GridLayout row="1" columns="*, *">
+                <Button col="0" text="Undo" 
+                        tap="{{ onUndo }}" 
+                        class="bg-gray-600 text-white rounded-lg m-1" />
+                <Button col="1" text="Redo" 
+                        tap="{{ onRedo }}" 
+                        class="bg-gray-600 text-white rounded-lg m-1" />
+            </GridLayout>
+        </GridLayout>
+    </GridLayout>
+</Page>

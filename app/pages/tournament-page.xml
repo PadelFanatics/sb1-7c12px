@@ -1,0 +1,105 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-white">
+    <ActionBar title="Tournament Setup" class="bg-white">
+        <NavigationButton text="←" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <!-- Tournament Name -->
+            <Label text="Tournament Name" class="text-lg font-bold mb-2" />
+            <TextField text="{{ tournamentName }}" 
+                      hint="Enter tournament name"
+                      class="bg-gray-100 rounded-lg p-4 mb-6" />
+
+            <!-- Tournament Format -->
+            <Label text="Tournament Format" class="text-lg font-bold mb-2" />
+            <StackLayout class="mb-6">
+                <!-- Round Robin Single -->
+                <GridLayout columns="*, auto" class="p-4 border rounded-lg mb-2" 
+                           tap="{{ selectFormat }}" data-format="round_robin_single"
+                           class="{{ selectedFormat === 'round_robin_single' ? 'bg-red-50 border-red-600' : 'bg-white border-gray-200' }}">
+                    <StackLayout col="0">
+                        <Label text="Round Robin Single" class="font-bold" />
+                        <Label text="Every player plays against all others once" class="text-gray-600 text-sm" />
+                    </StackLayout>
+                    <Label col="1" text="{{ selectedFormat === 'round_robin_single' ? '✓' : '' }}" 
+                           class="text-red-600 text-lg" />
+                </GridLayout>
+
+                <!-- Round Robin Teams -->
+                <GridLayout columns="*, auto" class="p-4 border rounded-lg mb-2"
+                           tap="{{ selectFormat }}" data-format="round_robin_teams"
+                           class="{{ selectedFormat === 'round_robin_teams' ? 'bg-red-50 border-red-600' : 'bg-white border-gray-200' }}">
+                    <StackLayout col="0">
+                        <Label text="Round Robin Teams" class="font-bold" />
+                        <Label text="Every team plays against all other teams once" class="text-gray-600 text-sm" />
+                    </StackLayout>
+                    <Label col="1" text="{{ selectedFormat === 'round_robin_teams' ? '✓' : '' }}"
+                           class="text-red-600 text-lg" />
+                </GridLayout>
+
+                <!-- Mexicano -->
+                <GridLayout columns="*, auto" class="p-4 border rounded-lg"
+                           tap="{{ selectFormat }}" data-format="mexicano"
+                           class="{{ selectedFormat === 'mexicano' ? 'bg-red-50 border-red-600' : 'bg-white border-gray-200' }}">
+                    <StackLayout col="0">
+                        <Label text="Mexicano" class="font-bold" />
+                        <Label text="Players matched based on current rankings" class="text-gray-600 text-sm" />
+                    </StackLayout>
+                    <Label col="1" text="{{ selectedFormat === 'mexicano' ? '✓' : '' }}"
+                           class="text-red-600 text-lg" />
+                </GridLayout>
+            </StackLayout>
+
+            <!-- Format Specific Settings -->
+            <StackLayout visibility="{{ selectedFormat === 'round_robin_teams' ? 'visible' : 'collapsed' }}" class="mb-6">
+                <Label text="Team Size" class="text-lg font-bold mb-2" />
+                <GridLayout columns="auto, *, auto" class="bg-gray-100 rounded-lg p-2">
+                    <Button col="0" text="-" tap="{{ decrementTeamSize }}"
+                            class="bg-gray-200 rounded-lg w-12" />
+                    <Label col="1" text="{{ teamSize }} players per team" class="text-center" />
+                    <Button col="2" text="+" tap="{{ incrementTeamSize }}"
+                            class="bg-gray-200 rounded-lg w-12" />
+                </GridLayout>
+            </StackLayout>
+
+            <!-- Number of Courts -->
+            <Label text="Available Courts" class="text-lg font-bold mb-2" />
+            <GridLayout columns="auto, *, auto" class="mb-6 bg-gray-100 rounded-lg p-2">
+                <Button col="0" text="-" tap="{{ decrementCourts }}"
+                        class="bg-gray-200 rounded-lg w-12" />
+                <Label col="1" text="{{ numberOfCourts }}" class="text-center" />
+                <Button col="2" text="+" tap="{{ incrementCourts }}"
+                        class="bg-gray-200 rounded-lg w-12" />
+            </GridLayout>
+
+            <!-- Players List -->
+            <GridLayout columns="*, auto" class="mb-4">
+                <Label col="0" text="Players" class="text-lg font-bold" />
+                <Button col="1" text="+ Add Player" tap="{{ addPlayer }}"
+                        class="bg-red-600 text-white rounded-lg px-4" />
+            </GridLayout>
+
+            <ListView items="{{ players }}" height="300" class="mb-6">
+                <ListView.itemTemplate>
+                    <GridLayout columns="auto, *, auto, auto" class="p-4 border-b border-gray-200">
+                        <Image col="0" src="{{ photoUrl }}" class="rounded-full w-12 h-12 mr-4" />
+                        <StackLayout col="1">
+                            <Label text="{{ name }}" class="text-lg" />
+                            <Label text="{{ rating }}" class="text-sm text-gray-600" 
+                                   visibility="{{ $parent.selectedFormat === 'mexicano' ? 'visible' : 'collapsed' }}" />
+                        </StackLayout>
+                        <Label col="2" text="{{ teamName }}" class="text-red-600 mr-4"
+                               visibility="{{ $parent.selectedFormat === 'round_robin_teams' ? 'visible' : 'collapsed' }}" />
+                        <Button col="3" text="✕" tap="{{ $parent.removePlayer }}"
+                                class="text-red-600" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+
+            <!-- Start Tournament Button -->
+            <Button text="Start Tournament" tap="{{ startTournament }}"
+                    class="bg-red-600 text-white rounded-lg p-4" />
+        </StackLayout>
+    </ScrollView>
+</Page>
